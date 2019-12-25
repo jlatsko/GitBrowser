@@ -1,13 +1,18 @@
-<mat-list>
-  <h3 mat-subheader>Github Repos</h3>
-  <mat-list-item *ngFor="let repo of gitrepos$ | async">
-    <mat-icon mat-list-icon>Repo</mat-icon>
-    <h4 mat-line>{{repo.name}}</h4>
-    <p mat-line> {{repo.updated_at | date}} </p>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-</mat-list>
 
+<h3 mat-subheader>Github Repos</h3>
+<div class="grid-list-container">
+<mat-grid-list [cols]="columns$ | async" gutterSize="16">
+  <mat-grid-tile class="tile" *ngFor="let repo of gitrepos$ | async">
+    <a class="tile__content"
+       fxLayout="column"
+       fxLayoutAlign="center center">
+      <div><h4 mat-line>{{repo.name}}</h4></div>
+      <div><p mat-line> {{repo.updated_at | date}} </p></div>
+    </a>
+  </mat-grid-tile>
+  <mat-divider></mat-divider>
+</mat-grid-list>
+</div>
 
 <form action="">
   <div class="form-group">
